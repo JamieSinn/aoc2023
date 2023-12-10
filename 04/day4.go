@@ -1,0 +1,34 @@
+package day4
+
+import (
+	"fmt"
+	"os"
+	"regexp"
+	"slices"
+	"strings"
+)
+
+func Day4(fileName string) {
+	input, _ := os.ReadFile(fileName)
+	re := regexp.MustCompile(`((?:\s+\d+)*) \|((?:\s+\d+)*)`)
+	copies := map[int]int{}
+
+	part1, part2 := 0, 0
+	for i, m := range re.FindAllStringSubmatch(string(input), -1) {
+		matching := 0
+		for _, n := range strings.Fields(m[1]) {
+			if slices.Contains(strings.Fields(m[2]), n) {
+				matching++
+			}
+		}
+		part1 += 1 << matching >> 1
+
+		copies[i]++
+		for j := 1; j <= matching; j++ {
+			copies[i+j] += copies[i]
+		}
+		part2 += copies[i]
+	}
+	fmt.Println(part1)
+	fmt.Println(part2)
+}

@@ -54,7 +54,7 @@ func Parse(line string) (n *Node) {
 	return
 }
 
-func Day8(fileName string) {
+func Day8(fileName string) (int, int) {
 	file, err := os.ReadFile(fileName)
 	if err != nil {
 		panic(err)
@@ -84,8 +84,12 @@ func Day8(fileName string) {
 
 	fmt.Println(steps)
 
-	steps = evaluate2(startNodes, flow)
-	fmt.Println(steps)
+	if len(startNodes) < 3 {
+		return steps, -1
+	}
+	steps2 := evaluate2(startNodes, flow)
+	fmt.Println(steps2)
+	return steps, steps2
 }
 
 func evaluate2(nodes []*Node, flow string) int {

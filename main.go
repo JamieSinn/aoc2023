@@ -1,8 +1,6 @@
 package main
 
-import (
-	day7 "aoc2023/07"
-)
+import day8 "aoc2023/08"
 
 func main() {
 	//day1.Day1("01/input.txt")
@@ -11,5 +9,6 @@ func main() {
 	//day4.Day4("04/input.txt")
 	//day5.Day5("05/input.txt")
 	//day6.Day6("06/input.txt")
-	day7.Day7("07/input.txt")
+	//day7.Day7("07/input.txt")
+	day8.Day8("08/input.txt")
 }
